@@ -1,0 +1,28 @@
+## simulacion de series de tiempo
+#### vamos a simular 1 indicador
+## para la simulacion en principio nencesitamos alguna informacion
+## valor maximo, minimo, el numero de datos
+## en este ejemplo vamos a poner la poblacion en mexico
+## que el valor minimo sera 100 y mqax=120 datos que indique en 2000
+pob<-sample(100:120, 15, replace = FALSE)
+## la convertimos en serie de tiempo
+pbts<-ts(pob, frequency = 1, start = (2000))
+plot(pbts, main= "Población en México", xlab= "Años", ylab= "Población")### darle formato
+### bajar de inegila ocupacion de personas
+#importar csv
+ocu<- ts (read.csv(("C:\\Users\\SALA-C27\\Downloads\\desocupacion.cvs"), header = FALSE), frequency=4, start=2005);
+plot(ocu, main= "Ocupación", xlab="Años", ylab="Porcentaje")
+plot(aggregate(ocu),main= "Ocupación", xlab="Años", ylab="Porcentaje" )
+## simular tasa de desocupación 3 a 8, 2005 , 40 datos, trimestral 
+## bajar de inegi la verdadera tasa de desocupacion e importar en R 
+## compara la simulada con inegi
+
+## desocuapda simula
+Desocupados<-sample(3:8, 44, replace = TRUE)
+Descopadosts<-ts(Desocupados, frequency =4 , start = (2005))
+plot(Descopadosts,main= "Descupación", xlab="Años", ylab="Porcentaje" )
+plot(aggregate(Descopadosts),main= "Descupación", xlab="Años", ylab="Porcentaje" )
+
+##impoprto inegi
+des<- ts (read.csv(("C:\\Users\\SALA-C27\\Downloads\\des.csv"), header = FALSE), frequency=4, start=2005);
+plot(cbind( Descopadosts, des),main= "Descupación", xlab="Años", ylab="Porcentaje" )
